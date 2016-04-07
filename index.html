@@ -1,0 +1,351 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
+<title>jQuery Mobile Web App</title>
+ <link href="jquery-mobile/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css"/>
+  <link href="css/styles.css" rel="stylesheet" type="text/css"/>
+ 
+    <style type="text/css">
+		.ui-dialog-contain {
+			width: 92.5%;
+			max-width: 800px;
+			margin: 10% auto 15px auto;
+			padding: 0;
+			position: relative;
+			top: -15px;
+		}
+	</style>
+</head> 
+<body> 
+   <script src="jquery-mobile/jquery.js" type="text/javascript"></script>
+    <script src="jquery-mobile/jquery.mobile-1.4.5.min.js" type="text/javascript"></script>
+    <script src="js/functions.js" type="text/javascript"></script>
+<div data-role="page" id="page">
+	<div data-role="header">
+		<h1>Meter Reader App</h1>
+	</div>
+	<div data-role="content">	
+		<ul data-role="listview">	
+			<li><a href="#page2">Read Meters</a></li>
+            <li><a href="#page3">Readings</a></li>
+			<li><a href="#page4" id="Download">Download</a></li>
+   			<li><a href="#page5" id="Upload">Upload</a></li>
+            <li><a href="#page6">File Maintenance</a></li>
+		</ul>		
+	</div>
+	<div data-role="footer">
+		<h4>©2016 v2.0</h4>
+	</div>
+</div>
+
+<div data-role="page" id="page2">
+	<div data-role="header">
+		 <a href='#' class='ui-btn-left' data-icon='arrow-l' onclick="history.back(); return false">Back</a><h1>Read Meters</h1><a href="#page" data-icon='home'>Home</a>
+	</div>
+	<div data-role="content">
+    	<div class="ui-field-contain" id="meterdetails">
+    		<label for="meter">Meter Number:</label>
+	    	<input type="text" id="meter" name="meter" placeholder="Enter Meter:"/>
+	    	<label for="accID">Account ID:</label>
+	    	<input type="text" id="accID" name="accID"/>
+	    	<label for="accName">Account Name:</label>
+	    	<input type="text" id="accName" name="accName"/>
+		    <label for="reading">Current Reading:</label>
+		    <input type="text" id="currentReading" name="currentReading" placeholder="Enter current reading"/>
+		    <label for="previousReading">Previous Reading:</label>
+    		<input type="text" id="previousReading" name="previousReading"/>
+    		<label for="consumption">Consumption:</label>
+    		<input type="text" id="consumption" name="consumption"/>
+    		<label for="amount">Amount:</label>
+    		<input type="text" id="amount" name="amount"/>
+    	</div>
+    	<div id="invoicetable">
+			<table id="invoicedetails" data-filter="true" data-input="#filterTable-input" class="ui-body-d ui-shadow table-stripe ui-responsive">
+					    <thead>
+					        <tr>
+					            <th data-priority="1">id</th>
+					            <th data-priority="2">Statement ID</th>
+					            <th data-priority="3">Item ID</th>
+					            <th data-priority="4">Base</th>
+					            <th data-priority="5">Rate</th>
+								<th data-priority="6">Amount</th>
+								<th data-priority="7">Vat ID</th>
+								<th data-priority="8">Vatable Sale</th>
+								<th data-priority="9">Vat Amount</th>
+								<th></th>
+					        </tr>
+					        </thead>
+					        <tbody></tbody>
+			</table>
+		</div>
+    	
+        <input id ="addItem" type="submit" value="Save Reading" data-theme="b"/>  		
+	</div>
+	
+	
+	<div data-role="footer">
+		<h4>©2015 v1.0</h4>
+	</div>
+</div>
+
+<div data-role="page" id="page3">
+	<div data-role="header">
+		<a href='#' class='ui-btn-left' data-icon='arrow-l' onclick="history.back(); return false">Back</a><h1>Readings</h1><a href="#page" data-icon='home'>Home</a>
+	</div>
+	<div data-role="content">
+		<table data-role="table" id="table-custom-2" data-mode="columntoggle" class="ui-body-d ui-shadow table-stripe ui-responsive" data-column-btn-theme="b" data-column-btn-text="Columns to display..." data-column-popup-theme="a">
+         <thead>
+           <tr class="ui-bar-d">
+             <th data-priority="2">Rank</th>
+             <th>Movie Title</th>
+             <th data-priority="3">Year</th>
+             <th data-priority="1"><abbr title="Rotten Tomato Rating">Rating</abbr></th>
+             <th data-priority="5">Reviews</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr>
+             <th>1</th>
+             <td><a href="http://en.wikipedia.org/wiki/Citizen_Kane" data-rel="external">Citizen Kane</a></td>
+             <td>1941</td>
+             <td>100%</td>
+             <td>74</td>
+           </tr>
+           <tr>
+             <th>2</th>
+             <td><a href="http://en.wikipedia.org/wiki/Casablanca_(film)" data-rel="external">Casablanca</a></td>
+             <td>1942</td>
+             <td>97%</td>
+             <td>64</td>
+           </tr>
+           <tr>
+             <th>3</th>
+             <td><a href="http://en.wikipedia.org/wiki/The_Godfather" data-rel="external">The Godfather</a></td>
+             <td>1972</td>
+             <td>97%</td>
+             <td>87</td>
+           </tr>
+           <tr>
+             <th>4</th>
+             <td><a href="http://en.wikipedia.org/wiki/Gone_with_the_Wind_(film)" data-rel="external">Gone with the Wind</a></td>
+             <td>1939</td>
+             <td>96%</td>
+             <td>87</td>
+           </tr>
+           <tr>
+             <th>5</th>
+             <td><a href="http://en.wikipedia.org/wiki/Lawrence_of_Arabia_(film)" data-rel="external">Lawrence of Arabia</a></td>
+             <td>1962</td>
+             <td>94%</td>
+             <td>87</td>
+           </tr>
+           <tr>
+             <th>6</th>
+             <td><a href="http://en.wikipedia.org/wiki/Dr._Strangelove" data-rel="external">Dr. Strangelove Or How I Learned to Stop Worrying and Love the Bomb</a></td>
+             <td>1964</td>
+             <td>92%</td>
+             <td>74</td>
+           </tr>
+           <tr>
+             <th>7</th>
+             <td><a href="http://en.wikipedia.org/wiki/The_Graduate" data-rel="external">The Graduate</a></td>
+             <td>1967</td>
+             <td>91%</td>
+             <td>122</td>
+           </tr>
+           <tr>
+             <th>8</th>
+             <td><a href="http://en.wikipedia.org/wiki/The_Wizard_of_Oz_(1939_film)" data-rel="external">The Wizard of Oz</a></td>
+             <td>1939</td>
+             <td>90%</td>
+             <td>72</td>
+           </tr>
+           <tr>
+             <th>9</th>
+             <td><a href="http://en.wikipedia.org/wiki/Singin%27_in_the_Rain" data-rel="external">Singin' in the Rain</a></td>
+             <td>1952</td>
+             <td>89%</td>
+             <td>85</td>
+           </tr>
+           <tr>
+             <th>10</th>
+             <td class="title"><a href="http://en.wikipedia.org/wiki/Inception" data-rel="external">Inception</a></td>
+             <td>2010</td>
+             <td>84%</td>
+             <td>78</td>
+           </tr>
+         </tbody>
+       </table>				
+	</div>
+	<div data-role="footer">
+		<h4>©2015 v1.0</h4>
+	</div>
+</div>
+
+<!--<div data-role="page" id="page4">
+	<div data-role="header">
+		<h1>Import</h1>
+	</div>
+	<div data-role="content">	
+    	 <p><a href="#page" data-direction="reverse" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-home">Back to Home</a></p>	
+		Content			
+	</div>
+	<div data-role="footer">
+		<h4>©2015 v1.0</h4>
+	</div>
+</div>
+
+<div data-role="page" id="page5">
+	<div data-role="header">
+		<h1>Export</h1>
+	</div>
+	<div data-role="content">	
+		<p><a href="#page" data-direction="reverse" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-home">Back to Home</a></p>
+        Content		
+	</div>
+	<div data-role="footer">
+		<h4>©2015 v1.0</h4>
+	</div>
+</div>-->
+
+<div data-role="page" id="page6">
+	<div data-role="header">
+		<a href='#' class='ui-btn-left' data-icon='arrow-l' onclick="history.back(); return false">Back</a><h1>File Maintenance</h1><a href="#page" data-icon='home'>Home</a>
+	</div>
+	<div data-role="content">	
+       <ul data-role="listview" data-inset="true">	
+			<li><a href="#fmMeters">Meters</a></li>
+            <li><a href="#fmAccounts">Accounts</a></li>
+            <li><a href="#fmTransformers">Transformers</a></li>
+		</ul>			
+	</div>
+	<div data-role="footer">
+		<h4>©2015 v1.0</h4>
+	</div>
+</div>
+
+<div data-role="page" id="fmMeters">
+	<div data-role="header">
+		<a href='#page6' class='ui-btn-left' data-icon='arrow-l' onclick="history.back(); return false">Back</a><h1>Meters</h1><a href="#page" data-icon='home'>Home</a>
+	</div>
+	<div data-role="content">	
+		<table data-role="table" id="table-custom-2" data-mode="columntoggle" class="ui-body-d ui-shadow table-stripe ui-responsive" data-column-btn-theme="b" data-column-btn-text="Columns to display..." data-column-popup-theme="a">
+         <thead>
+           <tr class="ui-bar-d">
+             <th data-priority="2">Rank</th>
+             <th>Movie Title</th>
+             <th data-priority="3">Year</th>
+             <th data-priority="1"><abbr title="Rotten Tomato Rating">Rating</abbr></th>
+             <th data-priority="5">Reviews</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr>
+             <th>1</th>
+             <td><a href="http://en.wikipedia.org/wiki/Citizen_Kane" data-rel="external">Citizen Kane</a></td>
+             <td>1941</td>
+             <td>100%</td>
+             <td>74</td>
+           </tr>
+           <tr>
+             <th>2</th>
+             <td><a href="http://en.wikipedia.org/wiki/Casablanca_(film)" data-rel="external">Casablanca</a></td>
+             <td>1942</td>
+             <td>97%</td>
+             <td>64</td>
+           </tr>
+           <tr>
+             <th>3</th>
+             <td><a href="http://en.wikipedia.org/wiki/The_Godfather" data-rel="external">The Godfather</a></td>
+             <td>1972</td>
+             <td>97%</td>
+             <td>87</td>
+           </tr>
+           <tr>
+             <th>4</th>
+             <td><a href="http://en.wikipedia.org/wiki/Gone_with_the_Wind_(film)" data-rel="external">Gone with the Wind</a></td>
+             <td>1939</td>
+             <td>96%</td>
+             <td>87</td>
+           </tr>
+           <tr>
+             <th>5</th>
+             <td><a href="http://en.wikipedia.org/wiki/Lawrence_of_Arabia_(film)" data-rel="external">Lawrence of Arabia</a></td>
+             <td>1962</td>
+             <td>94%</td>
+             <td>87</td>
+           </tr>
+           <tr>
+             <th>6</th>
+             <td><a href="http://en.wikipedia.org/wiki/Dr._Strangelove" data-rel="external">Dr. Strangelove Or How I Learned to Stop Worrying and Love the Bomb</a></td>
+             <td>1964</td>
+             <td>92%</td>
+             <td>74</td>
+           </tr>
+           <tr>
+             <th>7</th>
+             <td><a href="http://en.wikipedia.org/wiki/The_Graduate" data-rel="external">The Graduate</a></td>
+             <td>1967</td>
+             <td>91%</td>
+             <td>122</td>
+           </tr>
+           <tr>
+             <th>8</th>
+             <td><a href="http://en.wikipedia.org/wiki/The_Wizard_of_Oz_(1939_film)" data-rel="external">The Wizard of Oz</a></td>
+             <td>1939</td>
+             <td>90%</td>
+             <td>72</td>
+           </tr>
+           <tr>
+             <th>9</th>
+             <td><a href="http://en.wikipedia.org/wiki/Singin%27_in_the_Rain" data-rel="external">Singin' in the Rain</a></td>
+             <td>1952</td>
+             <td>89%</td>
+             <td>85</td>
+           </tr>
+           <tr>
+             <th>10</th>
+             <td class="title"><a href="http://en.wikipedia.org/wiki/Inception" data-rel="external">Inception</a></td>
+             <td>2010</td>
+             <td>84%</td>
+             <td>78</td>
+           </tr>
+         </tbody>
+       </table>
+	</div>
+	<div data-role="footer">
+		<h4>©2015 v1.0</h4>
+	</div>
+</div>
+
+<div data-role="page" data-dialog="true" id="BrowseAccount">
+	<div data-role="header" data-theme="b">
+		<h1>Browse Account</h1>
+		</div>
+		<div role="main" class="ui-content">
+		<h1>Select a meter</h1>
+		<form>
+		    <input id="filterTable-input" data-type="search" placeholder="Search here...">
+		</form>
+		<table id="account" data-filter="true" data-input="#filterTable-input" class="ui-body-d ui-shadow table-stripe ui-responsive">
+		    <thead>
+		        <tr>
+		            <th data-priority="1">Meter</th>
+		            <th data-priority="persist">Customer</th>
+		            <th data-priority="2">ID</th>
+		            <th data-priority="3"><abbr title="Customer Number">Customer No.</abbr></th>
+		            <th data-priority="4">Zone</th>
+					<th data-priority="5">Balance</th>
+					<th></th>
+		        </tr>
+		        </thead>
+		        <tbody></tbody>
+		    </table>
+			
+					<a href="#page2" data-rel="back" class="ui-btn ui-shadow ui-corner-all ui-btn-a">Cancel</a>
+	</div>	
+</div>
+</body>
+</html>
